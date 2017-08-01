@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Title</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #dfe2e7">
+<h1 style="text-align: center">个人待办事项管理系统</h1>
+<div style="width: 400px;height: 200px;margin: 100px auto;border-radius: 5px;box-shadow: 3px;text-align: center;">
+    <form action="login.do" method="post" id="from1">
+    <input type="text" class="form-control" style="margin-top: 50px;" placeholder="账号" name="username" id="1">
+    <input type="text" class="form-control" style="margin-top: 20px;" placeholder="密码" name="password" id="2">
+        <button class="btn bg-primary" style="margin-top: 10px" onclick="check()">登陆</button>
+    </form>
+
+
+
+</div>
+<script>
+
+   function check(){
+
+       if ($('#1').val().length>0&&$('#2').val().length>0){
+
+           $('#from1').submit();
+       }
+
+
+   }
+
+
+</script>
+
+
+</body>
+</html>

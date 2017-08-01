@@ -1,0 +1,30 @@
+﻿create table cux_users(
+user_id bigint primary key not null,
+user_name varchar(250) not null,
+password varchar(30) not null,
+sex varchar(1),
+age bigint check(age>1 and age<200),
+phone_number varchar(30),
+creation_date datetime not null default current_timestamp,
+last_update_date datetime,
+comments varchar(2000)
+);
+
+
+
+
+create table cux_todo_items(
+todo_item_id bigint primary key not null,
+user_id bigint references cux_users(user_id),
+todo_item_title varchar(250) not null,
+todo_item_content varchar(2000),
+priority varchar(10) not null default 'LOW',
+creation_date datetime not null default current_timestamp,
+last_update_date datetime,
+comments varchar(2000)
+)
+
+desc cus_users;
+insert into cux_users (user_id,user_name,password,sex,age,phone_number) values(1,'王镓耀','123456','M',22,'17621183928');
+
+insert into cux_todo_items(todo_item_id,user_id,todo_item_title,todo_item_content,priority) values(1,1,'周末出去玩','还是不上去了','HIGH')

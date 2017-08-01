@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Title</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .caret{
+            margin-top: 0px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid #000;
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+            border-bottom: 0px solid transparent;
+        }
+
+        .ppp{
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+            border-color: darkgray;
+            text-align: center;
+            float: left;
+
+        }
+        .ppy{
+            width: 40px;
+            height: 40px;
+            border-radius: 50% ;
+            background-color: black;
+            text-align: center;
+            margin:0 auto;
+
+            margin-top: -10px;
+        }
+
+        .tb1 th,td{
+
+            text-align: center;
+            height: 35px;
+
+        }
+        .pagestyle{
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+        .pagestyle li{
+            display: inline;
+        }
+
+        .pagestyle li a{
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .xx1{
+            border-top: solid 3px rgb(223, 226, 231);
+            margin-left: -2px;
+            margin-right: -2px;
+            margin-top: -2px;
+            z-index: 30;
+            box-shadow: none;
+            border: none;
+        }
+
+
+        .my-btn button{
+
+
+            margin-top: 20px;
+            margin-left: 200px;
+
+
+
+
+
+
+        }
+
+        .moda-div{
+
+            position: fixed;
+            width: 40%;
+            height: 30%;
+            background-color: yellow;
+            z-index:100;
+        }
+
+
+    </style>
+
+</head>
+
+<body style="background-color: rgb(223, 226, 231)">
+
+
+
+
+
+<div class="moda-div" id="moda" hidden></div>
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1" style="border-bottom: 1px solid;padding: 0%">
+
+            <!--<div class="col-lg-2">-->
+            <label style="width: 200px;color: darkgray;"><a href="#" style="color: darkgray;">个人待办事项管理系统</a>
+            </label><br>
+            <!--</div>-->
+            <label style="border-bottom: 2px solid;margin-bottom: 0px;margin-top: 30px;">待办事项</label>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 " style="padding-right: 0%;padding-left: 0%">
+            <div class="col-lg-3" style="height: 400px;border-bottom: 3px solid;border-top: 3px solid;margin-top: 1px;margin-bottom: 5px;">
+                <nav class="navbar" role="navigation" style="margin-top: 40px;">
+
+                    <div class="container-fluid" style="padding: 0%;margin: 0%;">
+                        <ul style="list-style-type: none;padding: 0%;margin: 0%;text-align: center">
+                            <li style="border-bottom: 1px dotted;width: 100%;height: 30px;"><a href="MyHtml.html" style="color: black;font-size: medium">待办事项列表</a></li>
+                            <li style="border-bottom: 1px dotted;width: 100%;height: 30px;"><a href="#" style="color: black;font-size: medium">个人信息维护</a></li>
+                        </ul>
+                    </div>
+
+
+                </nav>
+            </div>
+
+            <div class="col-lg-9" style="height: 600px;padding-right: 0%;">
+                <div  style="height: 400px;margin-left:10px;margin-right:0;margin-top: 1px;border-bottom: 3px solid;border-top: 3px solid;">
+
+                    <nav class="navbar" role="navigation" style="margin-top: 0px;padding: 0;">
+                        <div style="padding: 0%;margin: 0%;">
+
+                            <ul class="nav navbar-nav my-btn" >
+
+                                <li style="margin-left: 0%;padding-left: 0%;">
+                                    <button type="button" class="btn " id="btn-gengxing">更新</button> </li>
+
+                               <li> <button type="button" class="btn " id="btn-quxiao" style="display: none;">取消</button> </li>
+                                <li> <button type="button" class="btn " id="btn-tijiao" style="display: none;">提交</button> </li>
+
+
+
+
+                            </ul>
+
+
+
+
+
+                        </div>
+                    </nav>
+                    <div style="width: 100%;height: 500px;" >
+                        <table class="table tb1" id="itemstable">
+                            <tr >
+                                <th id="xuhao">
+                                    基本信息
+                                </th>
+
+
+                            </tr>
+                            <tr>
+                                <td style="border-top: 2px solid;" >用户名</td>
+                                <td style="border-top: 2px solid;" ><label id="user_name">qweqe </label><input type="text" hidden id="in_user_name">  </td>
+                                <td style="border-top: 2px solid;" >密码</td>
+                                <td style="border-top: 2px solid;" ><label id="password">qweqe </label><input type="text" hidden id="in_password"></td>
+
+
+
+                            </tr>
+                            <tr>
+                                <td>性别</td>
+                                <td ><label id="sex">qweqe </label><select hidden id="in_sex" >
+                                    <option value ="M">M</option>
+                                    <option value ="F">F</option>
+
+                                </select></td>
+                                <td>年龄</td>
+                                <td><label id="age">qweqe </label><input type="text" hidden id="in_age"></td>
+
+                            </tr>
+                            <tr>
+                                <td>电话号码</td>
+                                <td ><label id="phone">qweqe </label><input type="text" hidden id="in_phone"></td>
+
+                            </tr>
+                            <tr>
+                                <th>其他信息</th>
+                                <td><label>qweqe </label></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border-top: 2px solid;" >创建时间</td>
+                                <td style="border-top: 2px solid;" ><label id="creation_date">qweqe </label></td>
+
+                            </tr>
+                            <tr>
+                                <td>修改时间</td>
+                                <td ><label id="update_date">qweqe </label></td>
+
+                            </tr>
+                            <tr>
+                                <td>备注</td>
+                                <td ><label id="comments">qweqe </label><input type="text" hidden id="in_comments"></td>
+
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script >
+    $(document).ready(function(){
+
+
+        $('#btn-gengxing').click(function(){
+            var a= $('#user_name').html();
+            $('#in_user_name').val(a);
+            $('#user_name').hide();
+            $('#in_user_name').show();
+
+            a= $('#password').html();
+            $('#in_password').val(a);
+            $('#password').hide();
+            $('#in_password').show();
+
+
+            $('#sex').hide();
+            $('#in_sex').show();
+
+            a= $('#phone').html();
+            $('#in_phone').val(a);
+            $('#phone').hide();
+            $('#in_phone').show();
+
+            a= $('#age').html();
+            $('#in_age').val(a);
+            $('#age').hide();
+            $('#in_age').show();
+
+            a= $('#comments').html();
+            $('#in_comments').val(a);
+            $('#comments').hide();
+            $('#in_comments').show();
+
+
+            $('#btn-gengxing').hide();
+          $('#btn-quxiao').show();
+            $('#btn-tijiao').show();
+
+
+        });
+
+
+        $('#btn-tijiao').click(function(){
+            var name=$('#in_user_name').val();
+            var pass=$('#in_password').val();
+            var sex=$('#in_sex').val();
+            var age=$('#in_age').val();
+            var com=$('#in_comments').val();
+            var phone=$('#in_phone').val();
+
+            $.post("updateUser.do",
+                    {
+
+                                user_name:name,
+                                password:pass,
+                                  sex:sex,
+                                age:age,
+                                comments:com,
+                              phone_number:phone
+                            },
+                            function(data,status){
+                            	var json=$.parseJSON(data);
+                            	if(json.updateUser=="success"){
+                                alert("更新成功");
+                                flash();
+                        		quxiao();}
+                            	else{
+                            		alert("更新失败");
+                            		
+                            	}
+                            });
+
+
+
+
+                }
+        );
+
+
+        $('#btn-quxiao').click(function(){
+        	quxiao();
+        });
+        
+        
+
+    });
+
+    
+    function quxiao(){
+        $('#btn-quxiao').hide();
+         $("#btn-tijiao").hide();
+         $("#btn-gengxing").show();
+
+         $('#user_name').show();
+         $('#in_user_name').hide();
+
+         $('#password').show();
+         $('#in_password').hide();
+
+
+         $('#sex').show();
+         $('#in_sex').hide();
+
+
+         $('#phone').show();
+         $('#in_phone').hide();
+
+         $('#age').show();
+         $('#in_age').hide();
+
+
+         $('#comments').show();
+         $('#in_comments').hide();
+
+
+     }
+
+function flash(){
+    $.getJSON("findUser.do",function(item){
+
+        $('#user_name').html(item.user_name);
+          $('#password').html(item.password);
+        $('#sex').html(item.sex);
+        $('#age').html(item.age);
+                $('#phone').html(item.phone);
+        $('#creation_date').html(item.creation_date);
+        $('#update_date').html(item.last_update_date);
+        $('#comments').html(item.comments);
+
+    });
+}
+
+
+
+
+
+
+    $(document).ready(function(){
+
+flash();
+
+    });
+
+
+</script>
+
+
+
+</body>
+</html>
+

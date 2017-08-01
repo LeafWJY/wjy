@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+
+  
+    <select id="checkUser" parameterType="String" resultMap="User">
+        select * from cux_users WHERE user_name=#{username}
+    </select>
+    
+    <insert id="addItem" parameterType="String" >
+        insert into cux_todo_items(user_id,todo_item_title,todo_item_content,priority)
+         values(#{user_id},#{todo_item_title},#{todo_item_content},#{priority})
+    </insert>
+    
+    <update id="updateItem" parameterType="String" >
+        update cux_todo_items  set todo_item_title=#{todo_item_title},todo_item_content=#{todo_item_content},priority=#{priority},last_update_date=#{last_update_time}
+       where todo_item_id=#{todo_item_id}
+    </update>
+    
+    <update id="updateUser" parameterType="String">
+       update cux_users set user_name=#{user_name},password=#{password},sex=#{sex},age=#{age},phone_number=#{phone_number},comments=#{comments},last_update_date=#{last_update_date}
+       where user_id=#{user_id}
+    
+    </update>
+    
+    <delete  id="deleteItem" parameterType="String">
+    
+     delete from cux_todo_items where todo_item_id=#{todo_item_id}
+    </delete>
+    
+    <select id="findUser" resultMap="User">
+     select * from cux_users WHERE user_id=#{user_id}
+    </select>
+    
+    
+    
+    
+    <select id="findItems" resultMap="Items">
+     select * from cux_todo_items WHERE user_id=#{user_id}
+    </select>
+    
+    <resultMap type="Items" id="Items">
+     <result column="todo_item_id" property="todo_item_id"/>
+     <result column="user_id" property="user_id"/>
+     <result column="todo_item_title" property="todo_item_title"/>
+     <result column="todo_item_content" property="todo_item_content"/>
+      <result column="priority" property="priority"/>
+     <result column="creation_date" property="creation_date"/>
+     <result column="last_update_date" property="last_update_date"/> 
+        <result column="comments" property="comments"/> 
+</resultMap>
+
+
+
+<resultMap type="User" id="User">
+<result column="user_id" property="user_id"/>
+     <result column="user_name" property="user_name"/>
+     <result column="password" property="password"/>
+     <result column="sex" property="sex"/>
+     <result column="age" property="age"/>
+      <result column="phone_number" property="phone_number"/>
+     <result column="creation-date" property="creation-date"/>
+     <result column="last_update_date" property="last_update_date"/> 
+        <result column="comments" property="comments"/> 
+</resultMap>
+</mapper>
